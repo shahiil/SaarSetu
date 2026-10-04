@@ -1,0 +1,30 @@
+{
+  "metrics_summary": {
+    "dataset_samples": 1,
+    "extractive_baseline": {
+      "rouge1_f1": 0.0,
+      "rouge2_f1": 0.0,
+      "rougeL_f1": 0.0
+    },
+    "indic_abstractive_model": {
+      "rouge1_f1": 0.0,
+      "rouge2_f1": 0.0,
+      "rougeL_f1": 0.0
+    }
+  },
+  "detailed_records": [
+    {
+      "id": "kn_sample_10",
+      "document_len": 256,
+      "ref_summary": "ಮೈಸೂರು ದಸರಾ 10 ದಿನಗಳ ಸಾಂಸ್ಕೃತಿಕ ವೈಭವದ ಆಚರಣೆಯಾಗಿದ್ದು, ದೀಪಾಲಂಕೃತ ಅರಮನೆ ಹಾಗೂ ಜಂಬೂ ಸವಾರಿಗೆ ಜಾಗತಿಕವಾಗಿ ಪ್ರಸಿದ್ಧವಾಗಿದೆ.",
+      "extractive_summary": "ಕರ್ನಾಟಕದ ಮೈಸೂರು ದಸರಾ ಉತ್ಸವವು ಪ್ರಪಂಚದಾದ್ಯಂತ ಪ್ರಸಿದ್ಧವಾಗಿದೆ.",
+      "abstractive_summary": "ಕರ್ನಾಟಕದ ಮೈಸೂರು ದಸರಾ ಉತ್ಸವವು ಪ್ರಪಂಚದಾದ್ಯಂತ ಪ್ರಸಿದ್ಧವಾಗಿದೆ.",
+      "baseline_rouge1_f1": 0.0,
+      "baseline_rouge2_f1": 0.0,
+      "baseline_rougeL_f1": 0,
+      "abstractive_rouge1_f1": 0.0,
+      "abstractive_rouge2_f1": 0.0,
+      "abstractive_rougeL_f1": 0
+    }
+  ]
+}

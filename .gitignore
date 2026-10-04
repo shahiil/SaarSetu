@@ -1,0 +1,29 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Environment Variables
+.env
+
+# Dependencies & Build
+node_modules/
+dist/
+build/
+.cache/
+
+# Jupyter & Checkpoints
+.ipynb_checkpoints/
+model_checkpoints/
+checkpoints/
+
+# OS & IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

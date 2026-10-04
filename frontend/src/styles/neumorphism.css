@@ -1,0 +1,149 @@
+/* Neumorphism Design System for KannadaSaar */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Kannada:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg-color: #E8ECF3;
+  --card-bg: #E8ECF3;
+  --text-primary: #252A34;
+  --text-secondary: #667085;
+  --accent-primary: #5B5FEF;
+  --accent-hover: #4B4FDF;
+  --accent-secondary: #7C83FD;
+  --accent-light: rgba(91, 95, 239, 0.12);
+  --success: #3BA776;
+  --warning: #E5A93D;
+  --error: #D95C5C;
+  --border-color: rgba(163, 177, 198, 0.2);
+
+  /* Neumorphic Dual Shadows (Light Mode) */
+  --shadow-flat: 8px 8px 16px rgba(163, 177, 198, 0.6), -8px -8px 16px rgba(255, 255, 255, 0.8);
+  --shadow-flat-sm: 4px 4px 8px rgba(163, 177, 198, 0.5), -4px -4px 8px rgba(255, 255, 255, 0.8);
+  --shadow-hover: 12px 12px 24px rgba(163, 177, 198, 0.7), -12px -12px 24px rgba(255, 255, 255, 0.9);
+  --shadow-pressed: inset 4px 4px 8px rgba(163, 177, 198, 0.6), inset -4px -4px 8px rgba(255, 255, 255, 0.8);
+}
+
+[data-theme="dark"] {
+  --bg-color: #16181F;
+  --card-bg: #1B1E27;
+  --text-primary: #E2E8F0;
+  --text-secondary: #94A3B8;
+  --accent-primary: #6C72FF;
+  --accent-hover: #5A60FF;
+  --accent-secondary: #8E94FF;
+  --accent-light: rgba(108, 114, 255, 0.2);
+  --success: #4ADE80;
+  --warning: #FBBF24;
+  --error: #F87171;
+  --border-color: rgba(255, 255, 255, 0.05);
+
+  /* Neumorphic Dual Shadows (Dark Mode) */
+  --shadow-flat: 6px 6px 14px rgba(10, 11, 15, 0.8), -6px -6px 14px rgba(32, 36, 47, 0.6);
+  --shadow-flat-sm: 3px 3px 7px rgba(10, 11, 15, 0.7), -3px -3px 7px rgba(32, 36, 47, 0.5);
+  --shadow-hover: 9px 9px 20px rgba(10, 11, 15, 0.9), -9px -9px 20px rgba(32, 36, 47, 0.7);
+  --shadow-pressed: inset 4px 4px 8px rgba(10, 11, 15, 0.8), inset -4px -4px 8px rgba(32, 36, 47, 0.6);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+body {
+  font-family: 'Inter', 'Noto Sans Kannada', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* Neumorphic Utilities */
+.neu-card {
+  background: var(--card-bg);
+  box-shadow: var(--shadow-flat);
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid var(--border-color);
+}
+
+.neu-card-sm {
+  background: var(--card-bg);
+  box-shadow: var(--shadow-flat-sm);
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid var(--border-color);
+}
+
+.neu-card:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+.neu-button {
+  background: var(--card-bg);
+  box-shadow: var(--shadow-flat-sm);
+  color: var(--text-primary);
+  border: none;
+  border-radius: 12px;
+  padding: 10px 20px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  user-select: none;
+}
+
+.neu-button:hover {
+  box-shadow: var(--shadow-hover);
+  color: var(--accent-primary);
+}
+
+.neu-button:active, .neu-button.active {
+  box-shadow: var(--shadow-pressed);
+  color: var(--accent-primary);
+}
+
+.neu-button-primary {
+  background: var(--accent-primary);
+  color: #FFFFFF !important;
+  box-shadow: 4px 4px 12px rgba(91, 95, 239, 0.4);
+}
+
+.neu-button-primary:hover {
+  background: var(--accent-hover);
+  box-shadow: 6px 6px 18px rgba(91, 95, 239, 0.5);
+  color: #FFFFFF !important;
+}
+
+.neu-button-primary:active {
+  box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.neu-input, .neu-textarea {
+  background: var(--card-bg);
+  box-shadow: var(--shadow-pressed);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  color: var(--text-primary);
+  padding: 14px 18px;
+  font-family: inherit;
+  font-size: 1rem;
+  outline: none;
+  width: 100%;
+}
+
+.neu-input:focus, .neu-textarea:focus {
+  border-color: var(--accent-primary);
+}
+
+.badge {
+  background: var(--accent-light);
+  color: var(--accent-primary);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}

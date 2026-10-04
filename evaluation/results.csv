@@ -1,0 +1,2 @@
+id,document_len,ref_summary,extractive_summary,abstractive_summary,baseline_rouge1_f1,baseline_rouge2_f1,baseline_rougeL_f1,abstractive_rouge1_f1,abstractive_rouge2_f1,abstractive_rougeL_f1
+kn_sample_10,256,"ಮೈಸೂರು ದಸರಾ 10 ದಿನಗಳ ಸಾಂಸ್ಕೃತಿಕ ವೈಭವದ ಆಚರಣೆಯಾಗಿದ್ದು, ದೀಪಾಲಂಕೃತ ಅರಮನೆ ಹಾಗೂ ಜಂಬೂ ಸವಾರಿಗೆ ಜಾಗತಿಕವಾಗಿ ಪ್ರಸಿದ್ಧವಾಗಿದೆ.",ಕರ್ನಾಟಕದ ಮೈಸೂರು ದಸರಾ ಉತ್ಸವವು ಪ್ರಪಂಚದಾದ್ಯಂತ ಪ್ರಸಿದ್ಧವಾಗಿದೆ.,ಕರ್ನಾಟಕದ ಮೈಸೂರು ದಸರಾ ಉತ್ಸವವು ಪ್ರಪಂಚದಾದ್ಯಂತ ಪ್ರಸಿದ್ಧವಾಗಿದೆ.,0.0,0.0,0,0.0,0.0,0
