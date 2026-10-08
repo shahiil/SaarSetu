@@ -7,7 +7,7 @@ export default function KeywordVisualizer({ keywords = [], onSelectKeyword, acti
   if (!keywords || keywords.length === 0) return null;
 
   return (
-    <div className="neu-card" style={{ marginTop: '24px' }}>
+    <div className="neu-card" >
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
         <h3 style={{ fontSize: '1.05rem', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '8px' }}>
           <Tag size={18} color="var(--accent-primary)" /> ಮುಖ್ಯ ಪದಗಳು (Keywords)

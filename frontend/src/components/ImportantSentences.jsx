@@ -5,7 +5,7 @@ export default function ImportantSentences({ sentences = [], showEnglish = false
   if (!sentences || sentences.length === 0) return null;
 
   return (
-    <div className="neu-card" style={{ marginTop: '24px' }}>
+    <div className="neu-card">
       <h3 style={{ fontSize: '1.05rem', fontWeight: '600', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
         <Bookmark size={18} color="var(--accent-primary)" /> ಪ್ರಮುಖ ವಾಕ್ಯಗಳು (Important Sentences)
       </h3>

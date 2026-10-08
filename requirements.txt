@@ -13,3 +13,4 @@ evaluate>=0.4.0
 regex>=2023.5.5
 python-multipart>=0.0.6
 slowapi>=0.1.8
+deep-translator>=1.11.0

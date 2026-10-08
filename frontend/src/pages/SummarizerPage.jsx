@@ -119,12 +119,15 @@ ${result.important_sentences.map((s, i) => `${i + 1}. "${s.sentence}"\n   EN: "$
   const wordCount = inputText.trim() ? inputText.trim().split(/\s+/).length : 0;
 
   return (
-    <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '30px 24px' }}>
+    <div className="page-wrap">
       <div style={{ marginBottom: '24px' }}>
-        <h1 style={{ fontSize: '1.8rem', fontWeight: '700', marginBottom: '6px' }}>
-          ಕನ್ನಡ ಲೇಖನ ಸಾರಾಂಶ ಮತ್ತು ಮುಖ್ಯ ಪದಗಳ ಸೃಷ್ಟಿ (Kannada Text Summarizer)
+        <h1 className="page-title">
+          ಕನ್ನಡ ಲೇಖನ ಸಾರಾಂಶ ಮತ್ತು ಮುಖ್ಯ ಪದಗಳ ಸೃಷ್ಟಿ
+          <span style={{ display: 'block', fontSize: '0.6em', color: 'var(--text-secondary)', fontWeight: 500, marginTop: '4px' }}>
+            Kannada Text Summarizer
+          </span>
         </h1>
-        <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>
+        <p className="page-sub">
           ನಿಮ್ಮ ಕನ್ನಡ ಲೇಖನವನ್ನು ಇಲ್ಲಿ ನಮೂದಿಸಿ ಹಾಗೂ ಕೆಲವೇ ಕ್ಷಣಗಳಲ್ಲಿ ಪ್ರಮುಖ ಅಂಶಗಳನ್ನು ಪಡೆಯಿರಿ (Paste Kannada text to get summaries & keywords).
         </p>
       </div>
@@ -134,15 +137,10 @@ ${result.important_sentences.map((s, i) => `${i + 1}. "${s.sentence}"\n   EN: "$
         setError('');
       }} />
 
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-        gap: '30px',
-        alignItems: 'start'
-      }}>
+      <div className="summ-grid">
         {/* LEFT COLUMN: Input Card */}
         <div className="neu-card">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px', flexWrap: 'wrap', gap: '10px' }}>
             <h2 style={{ fontSize: '1.1rem', fontWeight: '600' }}>ನಿಮ್ಮ ಕನ್ನಡ ಪಠ್ಯ (Original Text)</h2>
             <div style={{ display: 'flex', gap: '8px' }}>
               <button onClick={handlePaste} className="neu-button" style={{ padding: '6px 12px', fontSize: '0.8rem' }} title="ಪೇಸ್ಟ್ ಮಾಡಿ">
@@ -156,7 +154,8 @@ ${result.important_sentences.map((s, i) => `${i + 1}. "${s.sentence}"\n   EN: "$
 
           <textarea
             className="neu-textarea"
-            rows={12}
+            rows={14}
+            aria-label="Kannada text input"
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
             placeholder="ಇಲ್ಲಿ ನಿಮ್ಮ ಕನ್ನಡ ಲೇಖನ ಅಥವಾ ಪಠ್ಯವನ್ನು ನಮೂದಿಸಿ... (Paste your Kannada passage here)"
@@ -175,27 +174,28 @@ ${result.important_sentences.map((s, i) => `${i + 1}. "${s.sentence}"\n   EN: "$
                 <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: '600', marginBottom: '8px' }}>
                   ಸಾರಾಂಶದ ಉದ್ದ (Summary Length):
                 </label>
-                <div style={{ display: 'flex', gap: '6px' }}>
-                  {['short', 'medium', 'detailed'].map((len) => (
+                <div className="seg" role="group" aria-label="Summary length">
+                  {[['short', 'ಸಣ್ಣ', 'Short'], ['medium', 'ಮಧ್ಯಮ', 'Medium'], ['detailed', 'ಉದ್ದ', 'Detailed']].map(([len, kn, en]) => (
                     <button
                       key={len}
                       onClick={() => setSummaryLength(len)}
+                      aria-pressed={summaryLength === len}
                       className={`neu-button ${summaryLength === len ? 'active' : ''}`}
-                      style={{ padding: '6px 10px', fontSize: '0.78rem', flex: 1 }}
                     >
-                      {len === 'short' ? 'ಸಣ್ಣ (Short)' : len === 'medium' ? 'ಮಧ್ಯಮ (Medium)' : 'ಉದ್ದ (Detailed)'}
+                      <span>{kn}</span>
+                      <small>{en}</small>
                     </button>
                   ))}
                 </div>
               </div>
 
-              <div style={{ width: '130px' }}>
+              <div style={{ width: '170px', flexShrink: 0 }}>
                 <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: '600', marginBottom: '8px' }}>
                   ಮುಖ್ಯ ಪದಗಳು (Keywords):
                 </label>
                 <select
                   value={keywordCount}
-                  onChange={(e) => setKeywordCount(e.target.value)}
+                  onChange={(e) => setKeywordCount(Number(e.target.value))}
                   className="neu-input"
                   style={{ padding: '6px 10px', fontSize: '0.82rem' }}
                 >
@@ -213,10 +213,11 @@ ${result.important_sentences.map((s, i) => `${i + 1}. "${s.sentence}"\n   EN: "$
             disabled={loading}
             className="neu-button neu-button-primary"
             style={{ width: '100%', padding: '14px', fontSize: '1rem' }}
+            aria-busy={loading}
           >
             {loading ? (
               <>
-                <RefreshCw size={18} className="spin" style={{ animation: 'spin 1s linear infinite' }} />
+                <RefreshCw size={18} className="spin" />
                 <span>{loadingStage}</span>
               </>
             ) : (
@@ -228,7 +229,7 @@ ${result.important_sentences.map((s, i) => `${i + 1}. "${s.sentence}"\n   EN: "$
           </button>
 
           {error && (
-            <div style={{
+            <div role="alert" style={{
               marginTop: '16px',
               padding: '12px',
               borderRadius: '10px',
@@ -247,9 +248,20 @@ ${result.important_sentences.map((s, i) => `${i + 1}. "${s.sentence}"\n   EN: "$
         </div>
 
         {/* RIGHT COLUMN: Results Card */}
-        <div>
-          {result ? (
-            <div>
+        <div className={result && !loading ? "" : "sticky-col"}>
+          {loading ? (
+            <div className="neu-card" aria-live="polite">
+              <h2 style={{ fontSize: '1.1rem', display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '18px' }}>
+                <RefreshCw size={18} className="spin" color="var(--accent-primary)" /> {loadingStage}
+              </h2>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                {[100, 94, 98, 70, 85].map((w, i) => (
+                  <div key={i} className="skeleton" style={{ width: `${w}%` }} />
+                ))}
+              </div>
+            </div>
+          ) : result ? (
+            <div className="result-stack fade-up">
               {/* Summary Card */}
               <div className="neu-card">
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', flexWrap: 'wrap', gap: '10px' }}>
@@ -290,11 +302,12 @@ ${result.important_sentences.map((s, i) => `${i + 1}. "${s.sentence}"\n   EN: "$
                   fontSize: '1.02rem',
                   lineHeight: '1.7',
                   color: 'var(--text-primary)',
-                  backgroundColor: showEnglishTranslation ? 'rgba(91, 95, 239, 0.08)' : 'var(--accent-light)',
+                  backgroundColor: showEnglishTranslation ? 'var(--accent-light)' : 'var(--accent-light)',
                   padding: '18px',
                   borderRadius: '12px',
                   border: showEnglishTranslation ? '1px solid var(--accent-primary)' : '1px solid var(--border-color)',
-                  marginBottom: '20px'
+                  marginBottom: '20px',
+                  fontFamily: showEnglishTranslation ? 'Inter, sans-serif' : "'Noto Sans Kannada', Inter, sans-serif"
                 }}>
                   {showEnglishTranslation && result.summary_english ? (
                     <div>
@@ -311,7 +324,7 @@ ${result.important_sentences.map((s, i) => `${i + 1}. "${s.sentence}"\n   EN: "$
                 </div>
 
                 {/* Statistics Row */}
-                <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+                <div className="stat-row">
                   <StatCard
                     title="ಮೂಲ ಪದಗಳು (Original Words)"
                     value={result.statistics.original_words}
@@ -351,8 +364,10 @@ ${result.important_sentences.map((s, i) => `${i + 1}. "${s.sentence}"\n   EN: "$
               />
             </div>
           ) : (
-            <div className="neu-card" style={{ textAlign: 'center', padding: '60px 24px', color: 'var(--text-secondary)' }}>
-              <FileText size={48} opacity={0.3} style={{ marginBottom: '16px' }} />
+            <div className="neu-card" style={{ textAlign: 'center', padding: '64px 24px', color: 'var(--text-secondary)' }}>
+              <div style={{ display: 'inline-flex', padding: '18px', borderRadius: '50%', background: 'var(--accent-light)', marginBottom: '18px' }}>
+                <FileText size={40} color="var(--accent-primary)" />
+              </div>
               <h3 style={{ fontSize: '1.1rem', marginBottom: '8px', color: 'var(--text-primary)' }}>
                 ಯಾವುದೇ ಸಾರಾಂಶ ಲಭ್ಯವಿಲ್ಲ (No Summary Generated Yet)
               </h3>
